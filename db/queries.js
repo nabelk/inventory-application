@@ -22,6 +22,11 @@ const getCategoryCounts = async () => {
     return rows;
 };
 
+const getBrands = async () => {
+    const { rows } = await pool.query('SELECT brand FROM inventory GROUP BY brand ORDER BY brand');
+    return rows;
+};
+
 const getFilterItems = async (category) => {
     const checkCategoryType = typeof category === 'string' ? [category] : category;
     const { rows } = await pool.query(
@@ -40,11 +45,45 @@ const getSearchItem = async (searchQuery) => {
     return rows;
 };
 
+const getDistinct = async (column) => {
+    const allowedColumns = ['category', 'brand'];
+    if (!allowedColumns.includes(column)) throw new Error('Invalid column name');
+    const { rows } = await pool.query(
+        `SELECT DISTINCT ${column} FROM inventory ORDER BY ${column}`,
+    );
+    return rows;
+};
+
+const insertProduct = async (colValues) => {
+    const { product, brand, category, stock, price } = colValues;
+    await pool.query(
+        'INSERT INTO inventory (product, price, brand, stock, category) VALUES ($1,$2,$3,$4,$5)',
+        [product, price, brand, stock, category],
+    );
+};
+
+const deleteProduct = async (id) => {
+    await pool.query('DELETE FROM inventory WHERE id = ($1)', [id]);
+};
+
+const updateProduct = async (colValues) => {
+    const { id, product, brand, category, stock, price } = colValues;
+    await pool.query(
+        'UPDATE inventory SET brand = ($1), product = ($2), category = ($3), stock =($4), price =($5) WHERE id = ($6) ',
+        [brand, product, category, stock, price, id],
+    );
+};
+
 module.exports = {
     getAllInventoryItems,
     getInventoryItemsOffset,
     getInventoryItemsCount,
     getCategoryCounts,
+    getBrands,
     getFilterItems,
     getSearchItem,
+    getDistinct,
+    insertProduct,
+    deleteProduct,
+    updateProduct,
 };
