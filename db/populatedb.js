@@ -11,17 +11,27 @@ CREATE TABLE IF NOT EXISTS inventory (
      category text
 );
 
-INSERT INTO inventory (product, price, brand, stock, category)
-VALUES
-('Yamaha FG800 Acoustic Guitar', 850.00, 'Yamaha', 15, 'Acoustic Guitar'),
-('Fender Player Stratocaster', 1200.50, 'Fender', 8, 'Electric Guitar'),
-('Pearl Export EXX Drum Kit', 2500.75, 'Pearl', 3, 'Percussion'),
-('Casio Privia PX-160 Digital Piano', 1999.99, 'Casio', 5, 'Keyboard'),
-('Ibanez SR500E Bass Guitar', 1300.00, 'Ibanez', 4, 'Bass Guitar'),
-('Yamaha YAS-280 Alto Saxophone', 1800.00, 'Yamaha', 7, 'Woodwind'),
-('Meinl Percussion Woodcraft Cajon', 300.00, 'Meinl', 12, 'Percussion'),
-('Roland Juno-DS88 Synthesizer', 2500.00, 'Roland', 2, 'Keyboard');
-
+INSERT INTO inventory (product, brand, category, price, stock) VALUES
+('Fender Stratocaster Electric Guitar', 'Fender', 'Guitar', 899.99, 5),
+('Yamaha Pacifica 112V', 'Yamaha', 'Guitar', 399.99, 10),
+('Roland TD-1K Electronic Drum Kit', 'Roland', 'Drum Kit', 499.99, 7),
+('Gibson Les Paul Studio', 'Gibson', 'Guitar', 1199.99, 3),
+('Ibanez SR500E Bass Guitar', 'Ibanez', 'Bass', 799.99, 4),
+('Casio Privia PX-S1100 Digital Piano', 'Casio', 'Keyboard', 649.99, 8),
+('Taylor GS Mini Acoustic Guitar', 'Taylor', 'Guitar', 699.99, 6),
+('Boss RC-505 Loop Station', 'Boss', 'Loop Station', 499.99, 12),
+('Korg Minilogue XD Synthesizer', 'Korg', 'Synthesizer', 749.99, 9),
+('Pioneer DJ DDJ-400 Controller', 'Pioneer', 'DJ Controller', 299.99, 15),
+('Yamaha YTR-2330 Trumpet', 'Yamaha', 'Brass', 499.99, 5),
+('Pearl Export EXX Drum Set', 'Pearl', 'Drum Kit', 999.99, 2),
+('Shure SM58 Microphone', 'Shure', 'Microphone', 99.99, 25),
+('Zildjian A Custom 18" Crash Cymbal', 'Zildjian', 'Cymbal', 249.99, 10),
+('Akai MPC Live II Music Production Center', 'Akai', 'Sampler', 1199.99, 4),
+('Martin D-28 Acoustic Guitar', 'Martin', 'Guitar', 2799.99, 2),
+('Roland SP-404 MKII Sampler', 'Roland', 'Sampler', 499.99, 6),
+('Kala KA-15S Soprano Ukulele', 'Kala', 'Ukulele', 69.99, 20),
+('Mackie CR5-X Studio Monitors', 'Mackie', 'Studio Monitors', 199.99, 10),
+('Epiphone Casino Hollow Body Guitar', 'Epiphone', 'Guitar', 699.99, 7);
 `;
 
 const { DB_USER, DB_PASSWORD, DB_NAME, DB_HOST, DB_PORT } = process.env;
